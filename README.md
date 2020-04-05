@@ -1,6 +1,10 @@
 <<<<<<< HEAD
 
 
+## Database
+untuk database berada pada folder db
+
+
 ## Usage
 - Create a new Controller at `application/controllers` then put like this:
 ```
@@ -33,7 +37,6 @@ $this->load->view('dist/_partials/footer'); ?>
 
 Stisla is under the [MIT License](LICENSE).
 =======
-# Disdik Project
+# Kominfo Project
 
-Diskdik Project
->>>>>>> 0180506d5361724645f6f421f9a9d8ce34ccce13
+
