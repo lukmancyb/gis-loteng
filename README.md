@@ -39,4 +39,8 @@ Stisla is under the [MIT License](LICENSE).
 =======
 # Kominfo Project
 
+Salam Tim IT Diskominfo Loteng
+
+=====
+
 
