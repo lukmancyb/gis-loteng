@@ -1,0 +1,15 @@
+[
+    {"id" : "1", "nama" :"praya_timur", "jumlah" : "45" },
+    {"id" : "2", "nama" :"janapria", "jumlah" : "114" },
+    {"id" : "3", "nama" :"kopang", "jumlah" : "126" },
+    {"id" : "4", "nama" :"praya_barat_daya", "jumlah" : "94" },
+    {"id" : "5", "nama" :"batukliang", "jumlah" : "113" },
+    {"id" : "6", "nama" :"praya_tengah", "jumlah" : "52" },
+    {"id" : "7", "nama" :"batukliang_utara", "jumlah" : "65" },
+    {"id" : "8", "nama" :"pringgarata", "jumlah" : "103" },
+    {"id" : "9", "nama" :"praya_barat", "jumlah" : "74" },
+    {"id" : "10", "nama" :"praya", "jumlah" : "88" },
+    {"id" : "11", "nama" :"jonggat", "jumlah" : "82" },
+    {"id" : "12", "nama" :"pujut", "jumlah" : "30" }
+]
+

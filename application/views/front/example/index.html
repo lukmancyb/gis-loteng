@@ -1,0 +1,239 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <title>Peta Sebaran Kepulangan Pekerja Migran Indonesia (PMI) Kabupaten Lombok Tengah</title>
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"/>
+        <link rel="stylesheet" href="https://simperkim.lomboktengahkab.go.id/sipasu/assets/bootstrap/css/bootstrap.css"/>
+        		<script src="https://simperkim.lomboktengahkab.go.id/sipasu/assets/bower_components/jquery/dist/jquery.min.js"></script>
+        		<script src="https://simperkim.lomboktengahkab.go.id/sipasu/assets/bootstrap/js/bootstrap.js"></script>
+        <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+
+
+        <style>
+            /*html, body {*/
+            /*    height: 100%;*/
+            /*    margin: 0;*/
+            /*}*/
+            /*#map {*/
+            /*    width: 600px;*/
+            /*    height: 400px;*/
+            /*}*/
+        </style>
+
+        <style>
+            #map { width: 800px; height: 500px; }
+            .info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: white; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; } .info h4 { margin: 0 0 5px; color: #777; }
+            .legend { text-align: left; line-height: 18px; color: #555; } .legend i { width: 18px; height: 18px; float: left; margin-right: 8px; opacity: 0.7; }</style>
+
+    </head>
+    <body>
+
+        <script type="text/javascript">
+                                        var praya_timur = 45
+                                            var janapria = 114
+                                            var kopang = 126
+                                            var praya_barat_daya = 94
+                                            var batukliang = 113
+                                            var praya_tengah = 52
+                                            var batukliang_utara = 65
+                                            var pringgarata = 103
+                                            var praya_barat = 74
+                                            var praya = 88
+                                            var jonggat = 82
+                                            var pujut = 30
+                                        var leneng = 0;
+            var prapen = 0;
+            var panjisari = 0;
+        </script>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Kabupaten Lombok Tengah</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </nav>
+        <div class="container pt-2 pl-2 pr-2">
+            <div class="row">
+                <div class="col-md-2">
+                </div>
+                <div id='map' class="col-md-8"></div>
+            </div>
+        <div class="row">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-8">
+                <p>
+                    Peta Sebaran Kepulangan Pekerja Migran Indonesia (PMI) Kabupaten Lombok Tengah Periode 22 - 23 Maret tahun 2020
+                </p>
+                Total PMI yang pulang : 986 Orang
+                Tersebar di 12 kecamatan
+
+            </div>
+        </div>
+        </div>
+
+        <br/>
+        <div>
+
+        </div>
+        <script src="https://simperkim.lomboktengahkab.go.id/sipasu/js/peta.js"></script>
+
+        <script type="text/javascript">
+
+            var map = L.map('map').setView([-8.710461, 116.309058], 10);
+
+            L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+                maxZoom: 18,
+                attribution: '',
+                id: 'mapbox/light-v9',
+                tileSize: 512,
+                zoomOffset: -1
+            }).addTo(map);
+
+
+            // control that shows state info on hover
+            var info = L.control();
+
+            info.onAdd = function (map) {
+                this._div = L.DomUtil.create('div', 'info');
+                this.update();
+                return this._div;
+            };
+
+            info.update = function (props) {
+                this._div.innerHTML = '<h4>Persebaran PMI di Lombok Tengah</h4>' +  (props ?
+                    '<b style=" color: '+ getColor(props.DATA) +'">' + props.name + '</b><br />' + props.DATA + ' Orang'
+                    : 'Klik map untuk melihat jumlah');
+            };
+
+            info.addTo(map);
+
+
+            // get color depending on population density value
+            function getColor(d) {
+                return d > 100 ? 'red' :
+                    d > 50  ? 'orange' :
+                         'green'
+            }
+
+            function style(feature) {
+                return {
+                    weight: 2,
+                    opacity: 1,
+                    color: 'white',
+                    dashArray: '3',
+                    fillOpacity: 0.7,
+                    fillColor: getColor(feature.properties.DATA)
+                };
+            }
+
+            function highlightFeature(e) {
+                var layer = e.target;
+
+                layer.setStyle({
+                    weight: 5,
+                    color: '#666',
+                    dashArray: '',
+                    fillOpacity: 0.7
+                });
+
+                if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+                    layer.bringToFront();
+                }
+
+                info.update(layer.feature.properties);
+            }
+
+            var geojson;
+
+            function resetHighlight(e) {
+                geojson.resetStyle(e.target);
+                info.update();
+            }
+
+            function zoomToFeature(e) {
+                map.fitBounds(e.target.getBounds());
+            }
+
+            function onEachFeature(feature, layer) {
+                layer.on({
+                    mouseover: highlightFeature,
+                    mouseout: resetHighlight,
+                    click: zoomToFeature
+                });
+            }
+
+            geojson = L.geoJson(statesData, {
+                style: style,
+                // onEachFeature: onEachFeature
+            }).addTo(map);
+
+            geojson.eachLayer(function (layer) {
+                layer.bindPopup(layer.feature.properties.name+' ' +layer.feature.properties.DATA + '  Orang');
+            });
+
+            map.attributionControl.addAttribution('');
+
+
+            var legend = L.control({position: 'bottomright'});
+
+            legend.onAdd = function (map) {
+
+                var div = L.DomUtil.create('div', 'info legend'),
+                    grades = [0, 50, 100],
+                    labels = [],
+                    from, to;
+
+                for (var i = 0; i < grades.length; i++) {
+                    from = grades[i];
+                    to = grades[i + 1];
+
+                    labels.push(
+                        '<i style="background:' + getColor(from + 1) + '"></i> ' +
+                        from + (to ? '&ndash;' + to : '+'));
+                }
+
+                div.innerHTML = labels.join('<br>');
+                return div;
+            };
+
+            legend.addTo(map);
+
+        </script>
+
+
+
+    </body>
+</html>
